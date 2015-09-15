@@ -1,0 +1,19 @@
+{
+	"identifier": "com.bliksemlabs.app.DomeTransit",
+	"name": "DomeTransit",
+	"version": "0.0.1",
+	"author": "Bliksem Labs",
+	"company": "Bliksem Labs",
+	"copyright": "Bliksem Labs 2015",
+	"description": "An awesome transit application",
+	"categories": [
+		"video"
+	],
+	"scripts": "Javascript/init.js",
+	"images": {
+		"about": "Images/Icon.png",
+		"icon": {
+			"192x192": "Images/Icon.png"
+		}
+	}
+}
