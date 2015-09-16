@@ -1,4 +1,16 @@
 Theme.set({
+
+    'BaseGlow': {
+        styles: {
+            backgroundColor: 'rgba(0,0,0,0.5)'
+        }
+    },
+    'BaseFocus': {
+        styles: {
+            backgroundColor: 'rgba(255,0,0,0.5)'
+        }
+    },
+
     'time_delayed': {
         styles: {
             color: '#D32F2F'

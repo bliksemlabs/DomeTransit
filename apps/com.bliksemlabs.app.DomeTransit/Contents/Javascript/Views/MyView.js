@@ -1,4 +1,76 @@
 // Create a class and extended it from the MAF.system.SidebarView
+
+var NumberEntryDialog = new MAF.Class({
+    ClassName: 'NumberEntryDialog',
+    Extends: MAF.dialogs.BaseDialogImplementation,
+
+    config: {
+        title: '',
+        message: '',
+        callback: null,
+        cancelCallback: null,
+        maxLength: 99
+    },
+
+    initialize: function () {
+        this.parent();
+    },
+
+    getDialogConfig: function() {
+        return {
+            type: 'textentry',
+            conf: {
+                maxLength: this.config.maxLength,
+                'ignoreBackKey': this.config.isModal,
+                key: this.retrieve('key'),
+                title: this.config.title,
+                message: this.config.message,
+                layout:'numeric-decimal'
+            }
+        };
+    },
+    handleCallback: function (response) {
+        //this.toggleKeyListener(false);
+        if (response.cancelled) {
+            if (this.config.cancelCallback && this.config.cancelCallback.call) {
+                this.config.cancelCallback(response);
+            }
+        } else {
+            if (this.config.callback && this.config.callback.call) {
+                this.config.callback(response);
+            }
+        }
+    }
+});
+
+var ZipCodeButton = function(){
+    return new MAF.Class({
+        Extends: MAF.control.InputButton,
+        ClassName:'ZipCodeButton',
+        initialize: function() {
+            this.parent();
+            console.log(this.config);
+        },
+        changeValue: function(){
+            var scope = this;
+            new NumberEntryDialog(
+			{
+                maxLength: 4,
+                title: FontAwesome.get('search')+' '+ $_('Zoek op postcode cijfers'),
+                callback: function (callback){
+                    scope.setValue(parseInt(callback.response));
+                    //Zoek hier (API)
+
+                    MAF.application.loadView('view-HalteView', {
+                        postcode: parseInt(callback.response)
+                    });
+
+                }
+            }).show();
+        }
+    });
+}();
+
 var MyView = new MAF.Class({
 	ClassName: 'MyView',
 
@@ -35,7 +107,7 @@ var MyView = new MAF.Class({
 
 		/*this._homeHandler = this.getKeyPress.subscribeTo(MAF.application, 'onWidgetKeyPress', this);*/
 
-		var textEntryButtonLabel = new MAF.element.Text({
+        var textEntryButtonLabel = new MAF.element.Text({
 			label: $_('Zoek op postcode'),
 			styles: {
 				height: 40,
@@ -43,61 +115,36 @@ var MyView = new MAF.Class({
 				hOffset: 10
 			}
 		}).appendTo(view);
-		var textEntryButton = new MAF.control.TextEntryButton({
-			label: $_('Voer je postcode in (1111)'),
-			keyboard: {
-				layout: "numeric-decimal"
-			},
+
+        var textEntryButton = new ZipCodeButton({
+			label: $_('Vul je postcode in'),
 			styles: {
 				width: view.width - 10,
 				hOffset: textEntryButtonLabel.hOffset,
-				vOffset: textEntryButtonLabel.outerHeight
+				vOffset: textEntryButtonLabel.outerHeight,
+                height: 100
 			},
 			events: {
 				onCancel: function () {
 					this.valueDisplay.setText('');
-				}
+				},
+                onFocus: function () {
+                    this.setStyle('backgroundColor', Theme.getStyles('BaseFocus', 'backgroundColor'));
+                },
+                onBlur: function () {
+                    this.setStyle('backgroundColor', Theme.getStyles('BaseGlow', 'backgroundColor'));
+                }
+
 			}
 		}).appendTo(view);
 
-		var nextView = view.controls.nextView = new MAF.control.TextButton({
-			label: $_('Kies Bushalte'),
-			styles: {
-				width: view.width - 10,
-				height: 40,
-				hOffset: textEntryButton.hOffset,
-				vOffset: textEntryButton.outerHeight + 10
-			},
-			textStyles:{
-				hOffset: 10
-			},
-			content: [
-				new MAF.element.Text({
-					label: FontAwesome.get('chevron-right'), // Create a FontAwesome icon
-					styles: {
-						height: 'inherit',
-						width: 'inherit',
-						hOffset: -10,
-						anchorStyle: 'rightCenter'
-					}
-				})
-			],
-			events: {
-				onSelect: function () {
-					// Load next Example view with data
-					MAF.application.loadView('view-HalteView', {
-						postcode: textEntryButton.getDisplayValue()
-					});
-				}
-			}
-		}).appendTo(view);
 		var stationPickerButtonLabel = new MAF.element.Text({
 			label: $_('Stations in de buurt'),
 			styles: {
 				height: 40,
 				width: view.width - 40,
 				hOffset: 10,
-				vOffset: nextView.outerHeight + 50
+				vOffset: textEntryButton.outerHeight + 50
 			}
 		}).appendTo(view);
 
