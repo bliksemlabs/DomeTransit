@@ -87,11 +87,14 @@ var StopTimeView = new MAF.Class({
                 var actual = (data.estimatedDepartureTime) ? moment(data.estimatedDepartureTime) : sched;
                 var delay = sched.diff(actual, 'seconds');
                 if (delay > 0) {
-                    cell.time.element.addClass("trip_delayed");
+                    cell.time.element.addClass("time_delayed");
+                    cell.element.addClass("row_delayed");
                 } else if (delay < 0) {
-                    cell.time.element.addClass("trip_early");
+                    cell.time.element.addClass("time_early");
+                    cell.element.addClass("row_early");
                 } else {
-                    cell.time.element.addClass("trip_ontime");
+                    cell.time.element.addClass("time_ontime");
+                    cell.element.addClass("row_ontime");
                 }
 				cell.name.setText(data.destination);
                 cell.time.setText((actual === sched) ? sched.format("HH:mm") : actual.format("HH:mm"));
