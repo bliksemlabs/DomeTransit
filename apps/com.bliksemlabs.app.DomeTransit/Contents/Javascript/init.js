@@ -1,5 +1,6 @@
 // Include your views
 include("Javascript/core/API.js");
+include("Javascript/core/theme.js");
 include('Javascript/Views/MyView.js');
 include('Javascript/Views/HalteView.js');
 include('Javascript/Views/StopTimeView.js');
