@@ -4,6 +4,7 @@ var getHalteData = function (postcode) {
 	new Request({
 		url: "http://1313.nl/postcode/"+postcode,
 		proxy: {
+            nocache: true,
 			json: true
 		},
 		onSuccess: function(json) {
@@ -21,6 +22,7 @@ var getStationData = function (latlng) {
 	new Request({
 		url: "http://1313.nl/station/"+latlng,
 		proxy: {
+            nocache: true,
 			json: true
 		},
 		onSuccess: function(json) {
@@ -39,6 +41,7 @@ var getStopTimeData = function (stopArea) {
 	new Request({
 		url: "http://dev.ovapi.nl/v2/stop_area/"+stopArea+"/departures/",
 		proxy: {
+            nocache: true,
 			json: true
 		},
 		onSuccess: function(json) {
