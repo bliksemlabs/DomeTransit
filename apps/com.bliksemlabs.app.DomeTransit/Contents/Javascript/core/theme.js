@@ -23,7 +23,7 @@ Theme.set({
 
     'view': {
         styles: {
-            backgroundColor: 'rgba(2, 50, 11, 0.5)'
+            backgroundColor: 'rgba(2, 50, 11, 0.5) !important'
         }
     },
 
