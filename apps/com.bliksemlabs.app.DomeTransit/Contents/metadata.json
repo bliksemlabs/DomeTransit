@@ -13,7 +13,7 @@
 	"images": {
 		"about": "Images/Icon.png",
 		"header": {
-            "normal": "Images/logo.png"
+            "normal": "Images/header.png"
         },
 		"icon": {
 			"192x192": "Images/Icon.png"
