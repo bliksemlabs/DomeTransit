@@ -12,6 +12,9 @@
 	"scripts": "Javascript/init.js",
 	"images": {
 		"about": "Images/Icon.png",
+		"header": {
+            "normal": "Images/logo.png"
+        },
 		"icon": {
 			"192x192": "Images/Icon.png"
 		}
