@@ -36,6 +36,7 @@ var HalteView = new MAF.Class({
 		var controlGrid = view.controls.grid = new MAF.control.Grid({
 			rows: 12,
 			columns: 1,
+            ClassName: 'search',
 			guid: 'halteGrid',
 			orientation: 'vertical',
 			styles: {

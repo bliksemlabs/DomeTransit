@@ -1,13 +1,25 @@
 Theme.set({
-    'search item .BaseText': {
-        styles: {
-            color: 'rgb(200,200,200)'
+    'search .ControlGridCell': {
+        normal:{
+            styles: {
+                color: 'rgb(200,200,200)',
+                marginTop: 1,
+                marginBottom: 1
+            }
+        },
+        focused: {
+            styles: {
+                color: 'rgb(255,255,255)'
+            }
         }
     },
 
-    'search focused .BaseText': {
-        styles: {
-            color: 'rgb(255,255,255)'
+    'times .ControlGridCell': {
+        normal:{
+            styles: {
+                marginTop: 1,
+                marginBottom: 1
+            }
         }
     },
 

@@ -33,6 +33,7 @@ var StopTimeView = new MAF.Class({
 		var controlGrid = view.controls.grid = new MAF.control.Grid({
 			rows: 12,
 			columns: 1,
+            ClassName: 'times',
 			guid: 'stopTimeGrid',
 			styles: {
 				width: view.width,

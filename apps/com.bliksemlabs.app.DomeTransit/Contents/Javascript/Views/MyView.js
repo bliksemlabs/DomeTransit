@@ -151,6 +151,7 @@ var MyView = new MAF.Class({
 		var stationList = view.controls.grid = new MAF.control.Grid({
 			rows: 12,
 			columns: 1,
+            ClassName: 'search',
 			guid: 'stationGrid',
 			styles: {
 				width: view.width,
