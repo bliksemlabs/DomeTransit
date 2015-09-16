@@ -12,6 +12,7 @@ var MyView = new MAF.Class({
 
 	// Create your view template
 	createView: function () {
+		console.log(profile);
 		// Reference to the current view
 		var view = this;
 		var postcode;
