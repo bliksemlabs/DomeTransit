@@ -107,8 +107,9 @@ var MyView = new MAF.Class({
 			guid: 'stationGrid',
 			styles: {
 				width: view.width,
-				height: view.height - 60,
-				vOffset: 0,
+				height: 900,
+				hOffset: 10,
+				vOffset: stationPickerButtonLabel.outerHeight + 10,
 				visible: false
 			},
 			cellCreator: function () {
@@ -148,7 +149,8 @@ var MyView = new MAF.Class({
 				return cell;
 			},
 			cellUpdater: function (cell, data) {
-
+				cell.name.setText(data.properties.openbareruimtenaam);
+				cell.city.setText(data.properties.woonplaatsnaam);
 			}
 		}).appendTo(view);
 
@@ -157,7 +159,7 @@ var MyView = new MAF.Class({
 	updateView: function () {
 		// Reference to the current view
 		var view = this,
-			latlng = profile && profile.latlng;
+			latlng = profile && profile.latlon;
 		if (latlng) {
 			console.log('Latlng received from view', latlng);
 			getStationData(latlng);

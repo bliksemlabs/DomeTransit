@@ -19,7 +19,7 @@ var getHalteData = function (postcode) {
 var getStationData = function (latlng) {
 	MAF.utility.WaitIndicator.up();
 	new Request({
-		url: "http://1313.nl/station/"+postcode,
+		url: "http://1313.nl/station/"+latlng,
 		proxy: {
 			json: true
 		},
