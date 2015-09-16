@@ -45,7 +45,6 @@ var MyView = new MAF.Class({
 
 		var nextView = view.controls.nextView = new MAF.control.TextButton({
 			label: $_('Kies Bushalte'),
-			ClassName: "testButton",
 			styles: {
 				width: view.width - 10,
 				height: 40,
