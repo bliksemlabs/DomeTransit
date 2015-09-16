@@ -34,7 +34,6 @@ var StopTimeView = new MAF.Class({
 			rows: 12,
 			columns: 1,
 			guid: 'stopTimeGrid',
-			/*orientation: 'vertical',*/
 			styles: {
 				width: view.width,
 				height: view.height - 60,
@@ -44,11 +43,7 @@ var StopTimeView = new MAF.Class({
 			cellCreator: function () {
 				// Create cells for the grid
 				var cell = new MAF.control.GridCell({
-					styles: this.getCellDimensions(),
-					events: {
-						onSelect: function () {
-						}
-					}
+					styles: this.getCellDimensions()
 				});
 
                 cell.time = new MAF.element.Text({
@@ -92,14 +87,14 @@ var StopTimeView = new MAF.Class({
                 var actual = (data.estimatedDepartureTime) ? moment(data.estimatedDepartureTime) : sched;
                 var delay = sched.diff(actual, 'seconds');
                 if (delay > 0) {
-                    cell.time.element.addClass("trip_delayed")
+                    cell.time.element.addClass("trip_delayed");
                 } else if (delay < 0) {
-                    cell.time.element.addClass("trip_early")
+                    cell.time.element.addClass("trip_early");
                 } else {
-                    cell.time.element.addClass("trip_ontime")
+                    cell.time.element.addClass("trip_ontime");
                 }
 				cell.name.setText(data.destination);
-                cell.time.setText((actual == sched) ? sched.format("HH:mm") : actual.format("HH:mm"));
+                cell.time.setText((actual === sched) ? sched.format("HH:mm") : actual.format("HH:mm"));
                 cell.line.setText(data.line.code);
 			}
 		}).appendTo(view);
@@ -111,8 +106,6 @@ var StopTimeView = new MAF.Class({
                 vOffset: controlGrid.height
             }
         }).appendTo(view);
-
-		// Attach the scrollIndicator to the grid with news items
 		pageIndicator.attachToSource(controlGrid);
 	},
 

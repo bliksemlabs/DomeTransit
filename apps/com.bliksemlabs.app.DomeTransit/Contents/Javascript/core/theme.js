@@ -1,17 +1,39 @@
 Theme.set({
     trip_delayed: {
-        styles: {
-            color: '#990000'
-        }
+        normal: {
+            styles: {
+                color: '#D32F2F'
+            }
+        },
+        focussed: {
+            styles: {
+                color: '#ffffff'
+            }
+        },
+
     },
     trip_early: {
-        styles: {
-            color: '#000099'
+        normal: {
+            styles: {
+                color: '#FF5722'
+            }
+        },
+        focused: {
+            styles: {
+                color: '#ffffff'
+            }
         }
     },
     trip_ontime: {
-        styles: {
-            color: '#009900'
+        normal: {
+            styles: {
+                color: '#009900'
+            }
+        },
+        focused: {
+            styles: {
+                color: '#ffffff'
+            }
         }
     }
 });

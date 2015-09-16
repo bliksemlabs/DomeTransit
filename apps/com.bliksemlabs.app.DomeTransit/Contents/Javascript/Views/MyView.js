@@ -5,12 +5,28 @@ var MyView = new MAF.Class({
 	Extends: MAF.system.SidebarView,
 
 
-	//getKeyPress: function(e) {
-	//	this.postcode += e.Event.key;
-	//	console.log("Got "+e.Event.key);
-	//},
+	initialize: function () {
+		var view = this;
+		view.parent();
+		// Register MAF messages listener to view.dataHasChanged
+		view.registerMessageCenterListenerCallback(view.dataHasChanged);
+	},
 
-	// Create your view template
+	dataHasChanged: function (event) {
+		var view = this,
+			controls = view.controls;
+		if (event.payload.key === 'MyStations') {
+			if (event.payload.value.length > 0) {
+				controls.grid.changeDataset(event.payload.value, true);
+				controls.grid.visible = true;
+				controls.grid.focus();
+			} else {
+				controls.grid.visible = false;
+			}
+		}
+	},
+
+
 	createView: function () {
 		console.log(profile);
 		// Reference to the current view
@@ -20,7 +36,7 @@ var MyView = new MAF.Class({
 		/*this._homeHandler = this.getKeyPress.subscribeTo(MAF.application, 'onWidgetKeyPress', this);*/
 
 		var textEntryButtonLabel = new MAF.element.Text({
-			label: $_('Kies je postcode'),
+			label: $_('Zoek op postcode'),
 			styles: {
 				height: 40,
 				width: view.width - 40,
@@ -50,7 +66,7 @@ var MyView = new MAF.Class({
 				width: view.width - 10,
 				height: 40,
 				hOffset: textEntryButton.hOffset,
-				vOffset: view.height - 100
+				vOffset: textEntryButton.outerHeight + 10
 			},
 			textStyles:{
 				hOffset: 10
@@ -75,10 +91,76 @@ var MyView = new MAF.Class({
 				}
 			}
 		}).appendTo(view);
+		var stationPickerButtonLabel = new MAF.element.Text({
+			label: $_('Stations in de buurt'),
+			styles: {
+				height: 40,
+				width: view.width - 40,
+				hOffset: 10,
+				vOffset: nextView.outerHeight + 50
+			}
+		}).appendTo(view);
 
+		var stationList = view.controls.grid = new MAF.control.Grid({
+			rows: 12,
+			columns: 1,
+			guid: 'stationGrid',
+			styles: {
+				width: view.width,
+				height: view.height - 60,
+				vOffset: 0,
+				visible: false
+			},
+			cellCreator: function () {
+				// Create cells for the grid
+				var cell = new MAF.control.GridCell({
+					styles: this.getCellDimensions(),
+					events: {
+						onSelect: function () {
+						}
+					}
+				});
+
+				cell.name = new MAF.element.Text({
+					visibleLines: 1,
+					styles: {
+						fontSize: 24,
+						width: cell.width - 20,
+						hOffset: 10,
+						vOffset: 10,
+						wrap: true,
+						truncation: 'end'
+					}
+				}).appendTo(cell);
+
+				cell.city = new MAF.element.Text({
+					visibleLines: 1,
+					styles: {
+						fontSize: 18,
+						width: cell.width - 20,
+						hOffset: 10,
+						vOffset: cell.name.outerHeight + 5,
+						wrap: true,
+						truncation: 'end'
+					}
+				}).appendTo(cell);
+
+				return cell;
+			},
+			cellUpdater: function (cell, data) {
+
+			}
+		}).appendTo(view);
+
+	},
+
+	updateView: function () {
+		// Reference to the current view
+		var view = this,
+			latlng = profile && profile.latlng;
+		if (latlng) {
+			console.log('Latlng received from view', latlng);
+			getStationData(latlng);
+		}
 	}
-
-	//destroyView: function() {
-	//	this._homeHandler.unsubscribeFrom(MAF.application, 'onWidgetKeyPress');
-	//}
 });

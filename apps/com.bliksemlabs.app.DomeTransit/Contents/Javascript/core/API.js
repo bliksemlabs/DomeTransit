@@ -16,6 +16,23 @@ var getHalteData = function (postcode) {
 	}).send();
 };
 
+var getStationData = function (latlng) {
+	MAF.utility.WaitIndicator.up();
+	new Request({
+		url: "http://1313.nl/station/"+postcode,
+		proxy: {
+			json: true
+		},
+		onSuccess: function(json) {
+			var data = json && json.features || {};
+			// Store data via message to signal the views that have a registerMessageCenterListenerCallback on the view
+			MAF.messages.store('MyStations', data || []);
+			// Unset load indicator
+			MAF.utility.WaitIndicator.down();
+		}
+	}).send();
+}
+
 var getStopTimeData = function (stopArea) {
 	// Trigger load indicator
 	MAF.utility.WaitIndicator.up();
