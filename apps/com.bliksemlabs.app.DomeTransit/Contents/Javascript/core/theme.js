@@ -21,11 +21,18 @@ Theme.set({
         }
     },
 
+    'view': {
+        styles: {
+            backgroundColor: 'rgba(2, 50, 11, 0.5)'
+        }
+    },
+
     'BaseGlow': {
         styles: {
             backgroundColor: 'rgba(0,0,0,0.3)'
         }
     },
+
 
     'BaseFocus': {
         styles: {

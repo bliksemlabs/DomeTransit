@@ -112,7 +112,7 @@ var MyView = new MAF.Class({
 			styles: {
 				height: 40,
 				width: view.width - 40,
-				hOffset: 10
+				hOffset: 20
 			}
 		}).appendTo(view);
 
