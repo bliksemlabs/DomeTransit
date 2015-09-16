@@ -3,8 +3,7 @@ Theme.set({
         normal:{
             styles: {
                 color: 'rgb(200,200,200)',
-                marginTop: 1,
-                marginBottom: 1
+                borderBottom: '2px solid #444'
             }
         },
         focused: {
@@ -17,8 +16,7 @@ Theme.set({
     'times .ControlGridCell': {
         normal:{
             styles: {
-                marginTop: 1,
-                marginBottom: 1
+                borderBottom: '2px solid #444'
             }
         }
     },
