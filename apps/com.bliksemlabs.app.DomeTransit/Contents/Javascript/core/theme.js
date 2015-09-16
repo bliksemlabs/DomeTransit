@@ -1,11 +1,11 @@
 Theme.set({
-    'item .BaseText': {
+    'search item .BaseText': {
         styles: {
-            color: 'rgba(200,200,200,1.0)'
+            color: 'rgb(200,200,200)'
         }
     },
 
-    'focused .BaseText': {
+    'search focused .BaseText': {
         styles: {
             color: 'rgb(255,255,255)'
         }
