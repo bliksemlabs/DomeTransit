@@ -1,13 +1,26 @@
 Theme.set({
+    'item .BaseText': {
+        styles: {
+            color: 'rgba(200,200,200,1.0)'
+        }
+    },
+
+    'focused .BaseText': {
+        styles: {
+            color: 'rgb(255,255,255)'
+        }
+    },
 
     'BaseGlow': {
         styles: {
-            backgroundColor: 'rgba(0,0,0,0.5)'
+            backgroundColor: 'rgba(0,0,0,0.3)'
         }
     },
+
     'BaseFocus': {
         styles: {
-            backgroundColor: 'rgba(255,0,0,0.5)'
+            color: 'rgba(255,255,255,1.0)',
+            backgroundColor: 'rgba(255,0,0,0.3)'
         }
     },
 
