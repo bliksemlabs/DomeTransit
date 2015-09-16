@@ -103,14 +103,12 @@ var StopTimeView = new MAF.Class({
             styles: {
                 height: 40,
                 width: view.width,
-                vOffset: controlGrid.height
+                vOffset: controlGrid.outerHeight
             }
         }).appendTo(view);
 		pageIndicator.attachToSource(controlGrid);
 	},
 
-	// After create view and when returning to the view
-	// the update view is called
 	updateView: function () {
 		// Reference to the current view
 		var view = this,

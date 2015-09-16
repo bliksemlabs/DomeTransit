@@ -1,39 +1,32 @@
 Theme.set({
-    trip_delayed: {
-        normal: {
-            styles: {
-                color: '#D32F2F'
-            }
-        },
-        focussed: {
-            styles: {
-                color: '#ffffff'
-            }
-        },
-
+    'trip_delayed': {
+        styles: {
+            color: '#D32F2F'
+        }
     },
     trip_early: {
-        normal: {
-            styles: {
-                color: '#FF5722'
-            }
-        },
-        focused: {
-            styles: {
-                color: '#ffffff'
-            }
+        styles: {
+            color: '#FF5722'
         }
     },
     trip_ontime: {
-        normal: {
-            styles: {
-                color: '#009900'
-            }
+        styles: {
+            color: '#009900'
         },
-        focused: {
-            styles: {
-                color: '#ffffff'
-            }
+    },
+    'focused .trip_ontime': {
+        styles: {
+            color: '#ffffff'
         }
-    }
+    },
+    'focused .trip_delayed': {
+        styles: {
+            color: '#ffffff'
+        }
+    },
+    'focused .trip_early': {
+        styles: {
+            color: '#ffffff'
+        }
+    },
 });
