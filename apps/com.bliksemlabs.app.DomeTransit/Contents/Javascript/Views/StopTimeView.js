@@ -30,23 +30,15 @@ var StopTimeView = new MAF.Class({
 		// Reference to the current view
 		var view = this;
 
-        var pageIndicator = new MAF.control.PageIndicator({
-            styles: {
-                height: 40,
-                width: view.width,
-                hOffset: 0
-            }
-        }).appendTo(view);
-
 		var controlGrid = view.controls.grid = new MAF.control.Grid({
 			rows: 12,
 			columns: 1,
 			guid: 'stopTimeGrid',
-			orientation: 'vertical',
+			/*orientation: 'vertical',*/
 			styles: {
-				width: view.width - 20,
-				height: view.height - pageIndicator.height,
-                vOffset: pageIndicator.height,
+				width: view.width,
+				height: view.height - 60,
+                vOffset: 0,
 				visible: false
 			},
 			cellCreator: function () {
@@ -111,6 +103,14 @@ var StopTimeView = new MAF.Class({
                 cell.line.setText(data.line.code);
 			}
 		}).appendTo(view);
+
+        var pageIndicator = new MAF.control.PageIndicator({
+            styles: {
+                height: 40,
+                width: view.width,
+                vOffset: controlGrid.height
+            }
+        }).appendTo(view);
 
 		// Attach the scrollIndicator to the grid with news items
 		pageIndicator.attachToSource(controlGrid);
