@@ -165,6 +165,9 @@ var MyView = new MAF.Class({
 					styles: this.getCellDimensions(),
 					events: {
 						onSelect: function () {
+							MAF.application.loadView('view-StopTimeView', {
+								id: this.getCellDataItem().properties.id
+							});
 						}
 					}
 				});
